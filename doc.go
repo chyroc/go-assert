@@ -1,23 +1,45 @@
-// ** We are working on testify v2 and would love to hear what you'd like to see in it, have your say here: https://cutt.ly/testify **
-// Package testify is a set of packages that provide many tools for testifying that your code will behave as you intend.
+// Package assert provides a set of comprehensive testing tools for use with the normal Go testing system.
 //
-// testify contains the following packages:
+// Example Usage
 //
-// The assert package provides a comprehensive set of assertion functions that tie in to the Go testing system.
+// The following is a complete example using assert in a standard test function:
+//    import (
+//      "testing"
+//      "github.com/chyroc/go-assert"
+//    )
 //
-// The http package contains tools to make it easier to test http activity using the Go testing system.
+//    func TestSomething(t *testing.T) {
 //
-// The mock package provides a system by which it is possible to mock your objects and verify calls are happening as expected.
+//      var a string = "Hello"
+//      var b string = "Hello"
 //
-// The suite package provides a basic structure for using structs as testing suites, and methods on those structs as tests.  It includes setup/teardown functionality in the way of interfaces.
-package testify
-
-// blank imports help docs.
-import (
-	// assert package
-	_ "github.com/stretchr/testify/assert"
-	// http package
-	_ "github.com/stretchr/testify/http"
-	// mock package
-	_ "github.com/stretchr/testify/mock"
-)
+//      assert.Equal(t, a, b, "The two words should be the same.")
+//
+//    }
+//
+// if you assert many times, use the format below:
+//
+//    import (
+//      "testing"
+//      "github.com/chyroc/go-assert"
+//    )
+//
+//    func TestSomething(t *testing.T) {
+//      assert := assert.New(t)
+//
+//      var a string = "Hello"
+//      var b string = "Hello"
+//
+//      assert.Equal(a, b, "The two words should be the same.")
+//    }
+//
+// Assertions
+//
+// Assertions allow you to easily write test code, and are global funcs in the `assert` package.
+// All assertion functions take, as the first argument, the `*testing.T` object provided by the
+// testing framework. This allows the assertion funcs to write the failings and other details to
+// the correct place.
+//
+// Every assertion function also takes an optional string message as the final argument,
+// allowing custom error messages to be appended to the message the assertion method outputs.
+package assert

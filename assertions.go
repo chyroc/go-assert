@@ -19,7 +19,7 @@ import (
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/pmezard/go-difflib/difflib"
-	yaml "gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v3"
 )
 
 //go:generate sh -c "cd ../_codegen && go build && cd - && ../_codegen/_codegen -output-package=assert -template=assertion_format.go.tmpl"
@@ -143,7 +143,7 @@ func CallerInfo() []string {
 		file = parts[len(parts)-1]
 		if len(parts) > 1 {
 			dir := parts[len(parts)-2]
-			if (dir != "assert" && dir != "mock" && dir != "require") || file == "mock_test.go" {
+			if (dir != "go-assert" && dir != "mock" && dir != "require") || file == "mock_test.go" {
 				callers = append(callers, fmt.Sprintf("%s:%d", file, line))
 			}
 		}

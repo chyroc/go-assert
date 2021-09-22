@@ -1,14 +1,14 @@
 /*
-* CODE GENERATED AUTOMATICALLY WITH github.com/stretchr/testify/_codegen
+* CODE GENERATED AUTOMATICALLY WITH github.com/chyroc/go-assert/_codegen
 * THIS FILE MUST NOT BE EDITED BY HAND
  */
 
 package assert
 
 import (
-	http "net/http"
-	url "net/url"
-	time "time"
+	"net/http"
+	"net/url"
+	"time"
 )
 
 // Conditionf uses a Comparison to assert a complex condition.
