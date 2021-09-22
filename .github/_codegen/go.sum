@@ -1,5 +1,5 @@
-github.com/chyroc/go-assert v0.2.0 h1:Jh5UQ9O5UnQnnj1uykY9xmRJezYJjJUKGkKdK+GI5r8=
-github.com/chyroc/go-assert v0.2.0/go.mod h1:7BZ9+SMEZZAsv/eR+Z7rbh1V7Pd2Ot4JmAr3nMw8ImA=
+github.com/chyroc/go-assert v1.8.0 h1:a77o08oxL7ycSHcCSPly9eQ8fLpANtUYX+u6++flAYk=
+github.com/chyroc/go-assert v1.8.0/go.mod h1:BdP17hLudHz+ZZJyiMN9oVx2nINgWQeHohEsf81CdP8=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ernesto-jimenez/gogen v0.0.0-20180125220232-d7d4131e6607 h1:cTavhURetDkezJCvxFggiyLeP40Mrk/TtVg2+ycw1Es=

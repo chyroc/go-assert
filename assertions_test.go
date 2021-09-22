@@ -90,15 +90,13 @@ type AssertionTesterInterface interface {
 }
 
 // AssertionTesterConformingObject is an object that conforms to the AssertionTesterInterface interface
-type AssertionTesterConformingObject struct {
-}
+type AssertionTesterConformingObject struct{}
 
 func (a *AssertionTesterConformingObject) TestMethod() {
 }
 
 // AssertionTesterNonConformingObject is an object that does not conform to the AssertionTesterInterface interface
-type AssertionTesterNonConformingObject struct {
-}
+type AssertionTesterNonConformingObject struct{}
 
 func TestObjectsAreEqual(t *testing.T) {
 	cases := []struct {
@@ -131,7 +129,6 @@ func TestObjectsAreEqual(t *testing.T) {
 			if res != c.result {
 				t.Errorf("ObjectsAreEqual(%#v, %#v) should return %#v", c.expected, c.actual, c.result)
 			}
-
 		})
 	}
 
@@ -145,11 +142,9 @@ func TestObjectsAreEqual(t *testing.T) {
 	if ObjectsAreEqualValues(nil, 0) {
 		t.Fail()
 	}
-
 }
 
 func TestImplements(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !Implements(mockT, (*AssertionTesterInterface)(nil), new(AssertionTesterConformingObject)) {
@@ -161,11 +156,9 @@ func TestImplements(t *testing.T) {
 	if Implements(mockT, (*AssertionTesterInterface)(nil), nil) {
 		t.Error("Implements method should return false: nil does not implement AssertionTesterInterface")
 	}
-
 }
 
 func TestIsType(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !IsType(mockT, new(AssertionTesterConformingObject), new(AssertionTesterConformingObject)) {
@@ -174,7 +167,6 @@ func TestIsType(t *testing.T) {
 	if IsType(mockT, new(AssertionTesterConformingObject), new(AssertionTesterNonConformingObject)) {
 		t.Error("IsType should return false: AssertionTesterConformingObject is not the same type as AssertionTesterNonConformingObject")
 	}
-
 }
 
 func TestEqual(t *testing.T) {
@@ -223,7 +215,6 @@ func ptr(i int) *int {
 }
 
 func TestSame(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if Same(mockT, ptr(1), ptr(1)) {
@@ -242,7 +233,6 @@ func TestSame(t *testing.T) {
 }
 
 func TestNotSame(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !NotSame(mockT, ptr(1), ptr(1)) {
@@ -407,7 +397,6 @@ func TestFormatUnequalValues(t *testing.T) {
 }
 
 func TestNotNil(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !NotNil(mockT, new(AssertionTesterConformingObject)) {
@@ -419,11 +408,9 @@ func TestNotNil(t *testing.T) {
 	if NotNil(mockT, (*struct{})(nil)) {
 		t.Error("NotNil should return false: object is (*struct{})(nil)")
 	}
-
 }
 
 func TestNil(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !Nil(mockT, nil) {
@@ -435,11 +422,9 @@ func TestNil(t *testing.T) {
 	if Nil(mockT, new(AssertionTesterConformingObject)) {
 		t.Error("Nil should return false: object is not nil")
 	}
-
 }
 
 func TestTrue(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !True(mockT, true) {
@@ -448,11 +433,9 @@ func TestTrue(t *testing.T) {
 	if True(mockT, false) {
 		t.Error("True should return false")
 	}
-
 }
 
 func TestFalse(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !False(mockT, false) {
@@ -461,11 +444,9 @@ func TestFalse(t *testing.T) {
 	if False(mockT, true) {
 		t.Error("False should return false")
 	}
-
 }
 
 func TestExactly(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	a := float32(1)
@@ -496,7 +477,6 @@ func TestExactly(t *testing.T) {
 }
 
 func TestNotEqual(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	cases := []struct {
@@ -579,7 +559,6 @@ func TestNotEqualValues(t *testing.T) {
 }
 
 func TestContainsNotContains(t *testing.T) {
-
 	type A struct {
 		Name, Value string
 	}
@@ -643,7 +622,6 @@ func TestContainsNotContains(t *testing.T) {
 }
 
 func TestContainsFailMessage(t *testing.T) {
-
 	mockT := new(mockTestingT)
 
 	Contains(mockT, "Hello World", errors.New("Hello"))
@@ -671,7 +649,6 @@ func TestContainsNotContainsOnNilValue(t *testing.T) {
 }
 
 func TestSubsetNotSubset(t *testing.T) {
-
 	// MTestCase adds a custom message to the case
 	cases := []struct {
 		expected interface{}
@@ -694,7 +671,6 @@ func TestSubsetNotSubset(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run("SubSet: "+c.message, func(t *testing.T) {
-
 			mockT := new(testing.T)
 			res := Subset(mockT, c.expected, c.actual)
 
@@ -733,7 +709,6 @@ func TestNotSubsetNil(t *testing.T) {
 }
 
 func Test_containsElement(t *testing.T) {
-
 	list1 := []string{"Foo", "Bar"}
 	list2 := []int{1, 2}
 	simpleMap := map[interface{}]interface{}{"Foo": "Bar"}
@@ -918,11 +893,9 @@ func TestCondition(t *testing.T) {
 	if Condition(mockT, func() bool { return false }, "Lie") {
 		t.Error("Condition should return false")
 	}
-
 }
 
 func TestDidPanic(t *testing.T) {
-
 	if funcDidPanic, _, _ := didPanic(func() {
 		panic("Panic!")
 	}); !funcDidPanic {
@@ -933,11 +906,9 @@ func TestDidPanic(t *testing.T) {
 	}); funcDidPanic {
 		t.Error("didPanic should return false")
 	}
-
 }
 
 func TestPanics(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !Panics(mockT, func() {
@@ -950,11 +921,9 @@ func TestPanics(t *testing.T) {
 	}) {
 		t.Error("Panics should return false")
 	}
-
 }
 
 func TestPanicsWithValue(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !PanicsWithValue(mockT, "Panic!", func() {
@@ -976,7 +945,6 @@ func TestPanicsWithValue(t *testing.T) {
 }
 
 func TestPanicsWithError(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !PanicsWithError(mockT, "panic", func() {
@@ -1004,7 +972,6 @@ func TestPanicsWithError(t *testing.T) {
 }
 
 func TestNotPanics(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	if !NotPanics(mockT, func() {
@@ -1017,11 +984,9 @@ func TestNotPanics(t *testing.T) {
 	}) {
 		t.Error("NotPanics should return false")
 	}
-
 }
 
 func TestNoError(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	// start with a nil error
@@ -1052,7 +1017,6 @@ type customError struct{}
 func (*customError) Error() string { return "fail" }
 
 func TestError(t *testing.T) {
-
 	mockT := new(testing.T)
 
 	// start with a nil error
@@ -1116,7 +1080,6 @@ func TestErrorContains(t *testing.T) {
 }
 
 func Test_isEmpty(t *testing.T) {
-
 	chWithValue := make(chan struct{}, 1)
 	chWithValue <- struct{}{}
 
@@ -1138,11 +1101,9 @@ func Test_isEmpty(t *testing.T) {
 	False(t, isEmpty(true))
 	False(t, isEmpty(map[string]string{"Hello": "World"}))
 	False(t, isEmpty(chWithValue))
-
 }
 
 func TestEmpty(t *testing.T) {
-
 	mockT := new(testing.T)
 	chWithValue := make(chan struct{}, 1)
 	chWithValue <- struct{}{}
@@ -1185,7 +1146,6 @@ func TestEmpty(t *testing.T) {
 }
 
 func TestNotEmpty(t *testing.T) {
-
 	mockT := new(testing.T)
 	chWithValue := make(chan struct{}, 1)
 	chWithValue <- struct{}{}
@@ -1313,7 +1273,6 @@ func TestLen(t *testing.T) {
 }
 
 func TestWithinDuration(t *testing.T) {
-
 	mockT := new(testing.T)
 	a := time.Now()
 	b := a.Add(10 * time.Second)
@@ -1512,7 +1471,6 @@ func TestInEpsilon(t *testing.T) {
 	for _, tc := range cases {
 		False(t, InEpsilon(mockT, tc.a, tc.b, tc.epsilon, "Expected %V and %V to have a relative difference of %v", tc.a, tc.b, tc.epsilon))
 	}
-
 }
 
 func TestInEpsilonSlice(t *testing.T) {
@@ -1617,7 +1575,7 @@ func TestFileExists(t *testing.T) {
 	False(t, FileExists(mockT, "random_file"))
 
 	mockT = new(testing.T)
-	False(t, FileExists(mockT, "../_codegen"))
+	False(t, FileExists(mockT, "./.github/_codegen"))
 
 	var tempFiles []string
 
@@ -1651,7 +1609,7 @@ func TestNoFileExists(t *testing.T) {
 	True(t, NoFileExists(mockT, "non_existent_file"))
 
 	mockT = new(testing.T)
-	True(t, NoFileExists(mockT, "../_codegen"))
+	True(t, NoFileExists(mockT, "./.github/_codegen"))
 
 	var tempFiles []string
 
@@ -2105,8 +2063,7 @@ func TestFailNowWithPlainTestingT(t *testing.T) {
 	}, "should panic since mockT is missing FailNow()")
 }
 
-type mockFailNowTestingT struct {
-}
+type mockFailNowTestingT struct{}
 
 func (m *mockFailNowTestingT) Errorf(format string, args ...interface{}) {}
 
@@ -2121,7 +2078,7 @@ func TestFailNowWithFullTestingT(t *testing.T) {
 }
 
 func TestBytesEqual(t *testing.T) {
-	var cases = []struct {
+	cases := []struct {
 		a, b []byte
 	}{
 		{make([]byte, 2), make([]byte, 2)},
@@ -2419,7 +2376,6 @@ func Test_validateEqualArgs(t *testing.T) {
 }
 
 func Test_truncatingFormat(t *testing.T) {
-
 	original := strings.Repeat("a", bufio.MaxScanTokenSize-102)
 	result := truncatingFormat(original)
 	Equal(t, fmt.Sprintf("%#v", original), result, "string should not be truncated")
