@@ -11,7 +11,7 @@ type Assertions struct {
 func New(t TestingT, options ...CliOption) *Assertions {
 	as := &Assertions{
 		t:         t,
-		failRerun: 0,
+		failRerun: 1,
 	}
 	for _, opt := range options {
 		opt(as)
